@@ -20,8 +20,6 @@ export function Car() {
         object.material.envMapIntensity = 20;
       }
     });
-
-    console.log(gltf.scene);
   }, [gltf]);
 
   useFrame((state, delta) => {
