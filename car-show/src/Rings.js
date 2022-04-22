@@ -11,12 +11,11 @@ export function Rings() {
     for (let i = 0; i < itemsRef.current.length; i++) {
       let mesh = itemsRef.current[i];
       let z = (i - 7) * 3.5 + ((elapsed * 0.4) % 3.5) * 2;
-      let az = Math.abs(z);
+      let dist = Math.abs(z);
       mesh.position.set(0, 0, -z);
-      mesh.scale.set(1 - az * 0.04, 1 - az * 0.04, 1 - az * 0.04);
+      mesh.scale.set(1 - dist * 0.04, 1 - dist * 0.04, 1 - dist * 0.04);
 
       let colorScale = 1;
-      let dist = Math.abs(z);
       if (dist > 2) {
         colorScale = 1 - (Math.min(dist, 12) - 2) / 10;
       }
