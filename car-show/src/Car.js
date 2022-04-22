@@ -10,6 +10,7 @@ export function Car() {
     GLTFLoader,
     process.env.PUBLIC_URL + "models/car/scene.gltf"
   );
+  
   useEffect(() => {
     gltf.scene.scale.set(0.005, 0.005, 0.005);
     gltf.scene.position.set(0, -0.035, 0);
