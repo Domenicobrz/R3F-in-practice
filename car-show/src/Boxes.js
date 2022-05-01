@@ -5,7 +5,7 @@ import { Vector3 } from "three";
 function Box({ color }) {
   const box = useRef();
   const time = useRef(0);
-  const [initialPosition, setInitialPosition] = useState(getInitialPosition());
+  const [position, setPosition] = useState(getInitialPosition());
   const [xRotSpeed] = useState(() => Math.random());
   const [yRotSpeed] = useState(() => Math.random());
   const [scale] = useState(() => Math.pow(Math.random(), 2.0) * 0.5 + 0.05);
@@ -23,13 +23,13 @@ function Box({ color }) {
     if(v.x < 0) v.x -= 1.75;
     if(v.x > 0) v.x += 1.75;
 
-    setInitialPosition(v);
+    setPosition(v);
   }
 
   useFrame(
     (state, delta) => {
       time.current += delta * 1.2;
-      let newZ = initialPosition.z - (time.current);
+      let newZ = position.z - (time.current);
 
       if(newZ < -10) {
         resetPosition();
@@ -37,14 +37,14 @@ function Box({ color }) {
       }
 
       box.current.position.set(
-        initialPosition.x, 
-        initialPosition.y, 
+        position.x, 
+        position.y, 
         newZ, 
       )
       box.current.rotation.x += delta * xRotSpeed;
       box.current.rotation.y += delta * yRotSpeed;
     },
-    [xRotSpeed, yRotSpeed, initialPosition]
+    [xRotSpeed, yRotSpeed, position]
   );
 
   return (
