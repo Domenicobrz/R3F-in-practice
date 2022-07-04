@@ -1,3 +1,4 @@
 npx create-react-app .
 npm install three@0.142 @react-three/fiber@8.0.26
 npm install @react-three/drei@9.14.3
+npm install @react-three/postprocessing@2.4.4

@@ -5,6 +5,7 @@
   "dependencies": {
     "@react-three/drei": "^9.14.3",
     "@react-three/fiber": "^8.0.26",
+    "@react-three/postprocessing": "^2.4.4",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
@@ -37,5 +38,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "leva": "^0.9.28"
   }
 }

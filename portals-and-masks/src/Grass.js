@@ -19,7 +19,8 @@ export function Grass() {
     
     // setting 2
     gltf.scene.children[0].material.map = gltf.scene.children[0].material.emissiveMap;
-    gltf.scene.children[0].material.emissive = new Color(1,1,1);
+    // gltf.scene.children[0].material.emissive = new Color(1,1,1);
+    gltf.scene.children[0].material.emissive = new Color(0.5, 0.5, 0.5);
     
     gltf.scene.children[0].material.side = DoubleSide;
 
