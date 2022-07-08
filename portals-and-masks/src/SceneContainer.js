@@ -84,7 +84,7 @@ export function SceneContainer() {
       <FloatingRocks />
       <Grass />
 
-      <EffectComposer>
+      <EffectComposer stencilBuffer={true}>
         <DepthOfField
           focusDistance={0.012} // where to focus
           focalLength={0.013} // focal length
