@@ -4,6 +4,7 @@ import {
   Environment,
   SpotLight,
   useDepthBuffer,
+  Float,
 } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import {
@@ -32,9 +33,10 @@ import { Rocks } from "./Rocks";
 import { Trees } from "./Trees";
 import { useControls } from "leva";
 
-let lightColor = new Color(1, 0.4, 0.2);
+// let lightColor = new Color(1, 0.4, 0.2);
+let lightColor = new Color(1, 0.2, 0.1);
 let mesh = new Mesh(
-  new CylinderGeometry(0.25, 0.25, 0.2, 20),
+  new CylinderGeometry(0.3, 0.3, 0.2, 20),
   new MeshBasicMaterial({
     color: lightColor,
     transparent: true,
@@ -43,6 +45,7 @@ let mesh = new Mesh(
 );
 mesh.rotation.x = Math.PI * 0.5;
 mesh.position.set(1.17, 10.7, -4.1);
+mesh.scale.set(1.5, 1, 1);
 
 export function SceneContainer() {
   const { test } = useControls({
@@ -63,32 +66,41 @@ export function SceneContainer() {
       <PerspectiveCamera makeDefault fov={50} position={[-2, 10, 21]} />
       <OrbitControls target={[2, 5, 0]} />
 
-      <primitive object={mesh} />
 
-      <spotLight
-        penumbra={1}
-        distance={500}
-        angle={60.65}
-        attenuation={1}
-        anglePower={3}
-        intensity={0.3}
-        color={lightColor}
-        position={[1.19, 10.85, -4.45]}
-        target-position={[0, 0, -1]}
-      />
+     
 
-      <FloatingIsland />
-      <Portal />
-      <Trees />
-      <Rocks />
+      <Float
+        speed={0.5} // Animation speed, defaults to 1
+        rotationIntensity={0.6} // XYZ rotation intensity, defaults to 1
+        floatIntensity={0.6} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
+      >
+        <primitive object={mesh} />
+        <spotLight
+          penumbra={1}
+          distance={500}
+          angle={60.65}
+          attenuation={1}
+          anglePower={3}
+          intensity={0.3}
+          color={lightColor}
+          position={[1.19, 10.85, -4.45]}
+          target-position={[0, 0, -1]}
+        />
+
+        <Portal />
+        <FloatingIsland />
+        <Trees />
+        <Rocks />
+        <Grass />
+      </Float>
+
       <FloatingRocks />
-      <Grass />
+   
 
       <EffectComposer stencilBuffer={true}>
         <DepthOfField
           focusDistance={0.012} // where to focus
           focalLength={0.013} // focal length
-          // bokehScale={4} // bokeh size
           bokehScale={8} // bokeh size
         />
         <HueSaturation hue={0} saturation={-0.15} />

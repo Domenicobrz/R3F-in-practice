@@ -8,14 +8,20 @@ import {
   EquirectangularReflectionMapping,
   AlwaysStencilFunc,
   ReplaceStencilOp,
+  DoubleSide,
+  LinearEncoding,
+  Vector2,
+  RepeatWrapping,
 } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { FillQuad } from "./FillQuad";
 
 const scene = new Scene();
 scene.background = new TextureLoader().load(
-  process.env.PUBLIC_URL + "textures/satara_night.jpg",
+  // thanks to https://www.creativeshrimp.com/midjourney-text-to-images.html
+  process.env.PUBLIC_URL + "textures/galaxy6.jpg",
   (texture) => {
+    texture.encoding = LinearEncoding;
     texture.mapping = EquirectangularReflectionMapping;
   }
 );
@@ -29,9 +35,13 @@ window.addEventListener("resize", () => {
 });
 
 export function Portal() {
-  const gltf = useLoader(
+  const model = useLoader(
     GLTFLoader,
     process.env.PUBLIC_URL + "models/portal.glb"
+  );
+  const mask = useLoader(
+    GLTFLoader,
+    process.env.PUBLIC_URL + "models/portal_mask.glb"
   );
 
   useFrame((state) => {
@@ -41,27 +51,24 @@ export function Portal() {
   });
 
   useEffect(() => {
-    if (!gltf) return;
+    if (!model) return;
 
-    let mesh = gltf.scene.children[0];
+    let mesh = model.scene.children[0];
     mesh.material.envMapIntensity = 3.5;
-  }, [gltf]);
+
+    let maskMesh = mask.scene.children[0];
+    maskMesh.material.transparent = false;
+    maskMesh.material.side = DoubleSide;
+    maskMesh.material.stencilFunc = AlwaysStencilFunc;
+    maskMesh.material.stencilWrite = true;
+    maskMesh.material.stencilRef = 1;
+    maskMesh.material.stencilZPass = ReplaceStencilOp;
+  }, [model, mask]);
 
   return (
     <Suspense fallback={null}>
-      <primitive object={gltf.scene} />
-
-      <mesh>
-        <planeGeometry args={[20, 20]}/>
-        <meshBasicMaterial 
-          color={"red"} 
-          stencilFunc={AlwaysStencilFunc} 
-          stencilWrite={true} 
-          stencilRef={1} 
-          stencilZPass={ReplaceStencilOp} 
-        />
-      </mesh>
-
+      <primitive object={model.scene} />
+      <primitive object={mask.scene} />
       <FillQuad map={target.texture} maskId={1} />
     </Suspense>
   );
