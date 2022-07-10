@@ -1,4 +1,5 @@
 import { useFrame, useLoader } from '@react-three/fiber';
+import { Float } from '@react-three/drei';
 import { Suspense } from 'react';
 import { Vector3 } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
@@ -10,25 +11,42 @@ export function FloatingRocks() {
   
   useFrame((state, delta) => {
     let elapsed = state.clock.getElapsedTime();
-
-    rock1.scene.children[0].translateY(Math.sin(elapsed * 0.4) * 0.00025);
-    rock1.scene.children[0].rotateOnAxis(new Vector3(1, 0, 0), Math.sin(elapsed * 0.4) * 0.001);
-    rock1.scene.children[0].rotateOnAxis(new Vector3(0, 1, 0), -delta * 0.05);
-
-    rock2.scene.children[0].translateY(Math.sin(elapsed * 0.65) * 0.005);
-    rock2.scene.children[0].rotateOnAxis(new Vector3(1, 0, 0), Math.sin(elapsed * 1.0) * 0.002);
-    rock2.scene.children[0].rotateOnAxis(new Vector3(0, 1, 0), delta * 0.08);
-
-    rock3.scene.children[0].translateY(Math.sin(elapsed * 0.50) * 0.003);
-    rock3.scene.children[0].rotateOnAxis(new Vector3(1, 0, 0), Math.sin(elapsed * 0.35) * 0.001);
-    rock3.scene.children[0].rotateOnAxis(new Vector3(0, 1, 0), delta * 0.1);
   });
   
   return (
     <Suspense fallback={null}>
-      <primitive object={rock1.scene} />
-      <primitive object={rock2.scene} />
-      <primitive object={rock3.scene} />
+      
+      <Float
+        speed={1.5} 
+        rotationIntensity={1.6} 
+        floatIntensity={0}
+        // position={[-18, 5, -19]}
+        position={[-20.5, -7, -19]}
+      >
+        <primitive object={rock2.scene} />
+      </Float>
+
+
+      <Float
+        speed={1.5} 
+        rotationIntensity={1.6} 
+        floatIntensity={0}
+        // position={[-5, 7, -33]}
+        position={[-5, 10, -33]}
+      >
+        <primitive object={rock1.scene} />
+      </Float>
+  
+  
+      <Float
+        speed={1.5} 
+        rotationIntensity={1.1} 
+        floatIntensity={0}
+        position={[22, 3.5, -9]}
+      >
+        <primitive object={rock3.scene} />
+      </Float>
+
     </Suspense>
   )
 }
