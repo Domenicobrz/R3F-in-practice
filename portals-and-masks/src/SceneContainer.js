@@ -1,37 +1,22 @@
-import {
-  OrbitControls,
-  PerspectiveCamera,
-  Environment,
-  SpotLight,
-  useDepthBuffer,
-  Float,
-} from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { OrbitControls, PerspectiveCamera, Environment, Float } from "@react-three/drei";
 import {
   EffectComposer,
   HueSaturation,
   ChromaticAberration,
   GodRays,
   DepthOfField,
+  BrightnessContrast,
 } from "@react-three/postprocessing";
 import { BlendFunction, Resizer, KernelSize } from "postprocessing";
-import { forwardRef, Suspense, useRef } from "react";
-import {
-  Color,
-  ConeGeometry,
-  CylinderGeometry,
-  Mesh,
-  MeshBasicMaterial,
-  RingGeometry,
-  SphereGeometry,
-} from "three";
+import { Suspense } from "react";
+import { Color, CylinderGeometry, Mesh, MeshBasicMaterial } from "three";
 import { FloatingIsland } from "./FloatingIsland";
 import { FloatingRocks } from "./FloatingRocks";
 import { Grass } from "./Grass";
 import { Portal } from "./Portal";
 import { Rocks } from "./Rocks";
 import { Trees } from "./Trees";
-import { useControls } from "leva";
+import { Words } from "./Words";
 import { SceneParticles } from "./SceneParticles";
 
 let lightColor = new Color(1, 0.2, 0.1);
@@ -48,24 +33,13 @@ mesh.position.set(1.17, 10.7, -4.1);
 mesh.scale.set(1.5, 1, 1);
 
 export function SceneContainer() {
-  const { test } = useControls({
-    test: { value: 2, min: 0, max: 10 },
-  });
-
   return (
     <Suspense fallback={null}>
-      <Environment
-        background={"only"}
-        files={process.env.PUBLIC_URL + "textures/bg4.hdr"}
-      />
-      <Environment
-        background={false}
-        files={process.env.PUBLIC_URL + "textures/envmap1050esp0.5.hdr"}
-      />
+      <Environment background={"only"} files={process.env.PUBLIC_URL + "textures/bg6.hdr"} />
+      <Environment background={false} files={process.env.PUBLIC_URL + "textures/envmap1050esp0.5.hdr"} />
 
       <PerspectiveCamera makeDefault fov={50} position={[-2, 10, 21]} />
       <OrbitControls target={[2, 5, 0]} />
-
 
       <Float
         speed={0.5} 
@@ -91,23 +65,20 @@ export function SceneContainer() {
         <Rocks />
         <Grass />
         <SceneParticles />
+        <Words />
       </Float>
 
-
       <FloatingRocks />
-   
 
       <EffectComposer stencilBuffer={true}>
         <DepthOfField
-          focusDistance={0.012} // where to focus
-          focalLength={0.013} // focal length
-          bokehScale={8} // bokeh size
-        />
+          focusDistance={0.012}
+          focalLength={0.013}
+          bokehScale={8}
+        /> 
         <HueSaturation hue={0} saturation={-0.15} />
-        <ChromaticAberration
-          radialModulation={true}
-          offset={[0.00175, 0.00175]}
-        />
+        <BrightnessContrast brightness={0.0} contrast={0.035} />
+        <ChromaticAberration radialModulation={true} offset={[0.00175, 0.00175]} />
         <GodRays
           sun={mesh}
           blendFunction={BlendFunction.Screen}

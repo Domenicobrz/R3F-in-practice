@@ -18,7 +18,6 @@ export function FloatingIsland() {
     mesh.material.lightMap = mesh.material.map;
     mesh.material.lightMapIntensity = 400;
     mesh.material.color = new Color(0.04,0.06,0.1);
-    // mesh.material.map = null;
   }, [gltf]);
 
   return (

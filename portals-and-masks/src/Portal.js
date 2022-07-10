@@ -1,6 +1,5 @@
-import { Mask, Sparkles } from "@react-three/drei";
 import { useFrame, useLoader } from "@react-three/fiber";
-import { Suspense, useEffect, useMemo } from "react";
+import { Suspense, useEffect } from "react";
 import {
   Scene,
   WebGLRenderTarget,
@@ -10,8 +9,6 @@ import {
   ReplaceStencilOp,
   DoubleSide,
   LinearEncoding,
-  Vector2,
-  RepeatWrapping,
 } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { FillQuad } from "./FillQuad";
