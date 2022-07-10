@@ -32,8 +32,8 @@ import { Portal } from "./Portal";
 import { Rocks } from "./Rocks";
 import { Trees } from "./Trees";
 import { useControls } from "leva";
+import { SceneParticles } from "./SceneParticles";
 
-// let lightColor = new Color(1, 0.4, 0.2);
 let lightColor = new Color(1, 0.2, 0.1);
 let mesh = new Mesh(
   new CylinderGeometry(0.3, 0.3, 0.2, 20),
@@ -67,12 +67,10 @@ export function SceneContainer() {
       <OrbitControls target={[2, 5, 0]} />
 
 
-     
-
       <Float
-        speed={0.5} // Animation speed, defaults to 1
-        rotationIntensity={0.6} // XYZ rotation intensity, defaults to 1
-        floatIntensity={0.6} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
+        speed={0.5} 
+        rotationIntensity={0.6} 
+        floatIntensity={0.6}
       >
         <primitive object={mesh} />
         <spotLight
@@ -92,7 +90,9 @@ export function SceneContainer() {
         <Trees />
         <Rocks />
         <Grass />
+        <SceneParticles />
       </Float>
+
 
       <FloatingRocks />
    

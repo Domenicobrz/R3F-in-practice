@@ -1,4 +1,4 @@
-import { Mask } from "@react-three/drei";
+import { Mask, Sparkles } from "@react-three/drei";
 import { useFrame, useLoader } from "@react-three/fiber";
 import { Suspense, useEffect, useMemo } from "react";
 import {
