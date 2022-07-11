@@ -38,13 +38,16 @@ export function SceneContainer() {
       <Environment background={"only"} files={process.env.PUBLIC_URL + "textures/bg6.hdr"} />
       <Environment background={false} files={process.env.PUBLIC_URL + "textures/envmap1050esp0.5.hdr"} />
 
-      <PerspectiveCamera makeDefault fov={50} position={[-2, 10, 21]} />
-      <OrbitControls target={[2, 5, 0]} />
+      <PerspectiveCamera makeDefault fov={50} position={[-2, 10.85, 20.35]} />
+      <OrbitControls target={[2, 5, 0]} maxPolarAngle={Math.PI * 0.5}/>
 
       <Float
         speed={0.5} 
         rotationIntensity={0.6} 
         floatIntensity={0.6}
+        // speed={0} 
+        // rotationIntensity={0} 
+        // floatIntensity={0}
       >
         <primitive object={mesh} />
         <spotLight
@@ -72,9 +75,12 @@ export function SceneContainer() {
 
       <EffectComposer stencilBuffer={true}>
         <DepthOfField
+          // focusDistance={0.012}
+          // focalLength={0.013}
+          // bokehScale={8}
           focusDistance={0.012}
-          focalLength={0.013}
-          bokehScale={8}
+          focalLength={0.015}
+          bokehScale={7}
         /> 
         <HueSaturation hue={0} saturation={-0.15} />
         <BrightnessContrast brightness={0.0} contrast={0.035} />

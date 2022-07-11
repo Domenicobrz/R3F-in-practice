@@ -16,7 +16,7 @@ import { FillQuad } from "./FillQuad";
 const scene = new Scene();
 scene.background = new TextureLoader().load(
   // thanks to https://www.creativeshrimp.com/midjourney-text-to-images.html
-  process.env.PUBLIC_URL + "textures/galaxy6.jpg",
+  process.env.PUBLIC_URL + "textures/galaxy5.jpg",
   (texture) => {
     texture.encoding = LinearEncoding;
     texture.mapping = EquirectangularReflectionMapping;
