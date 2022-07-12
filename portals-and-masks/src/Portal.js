@@ -1,14 +1,7 @@
 import { useFrame, useLoader } from "@react-three/fiber";
 import { Suspense, useEffect } from "react";
-import {
-  Scene,
-  WebGLRenderTarget,
-  TextureLoader,
-  EquirectangularReflectionMapping,
-  AlwaysStencilFunc,
-  ReplaceStencilOp,
-  DoubleSide,
-  LinearEncoding,
+import { Scene, WebGLRenderTarget, TextureLoader, EquirectangularReflectionMapping, 
+  AlwaysStencilFunc, ReplaceStencilOp, DoubleSide, LinearEncoding,
 } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { FillQuad } from "./FillQuad";

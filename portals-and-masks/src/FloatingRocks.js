@@ -10,7 +10,6 @@ export function FloatingRocks() {
   
   return (
     <Suspense fallback={null}>
-      
       <Float
         speed={1.5} 
         rotationIntensity={1.6} 
@@ -39,7 +38,6 @@ export function FloatingRocks() {
       >
         <primitive object={rock3.scene} />
       </Float>
-
     </Suspense>
   )
 }

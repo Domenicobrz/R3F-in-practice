@@ -30,7 +30,9 @@ const materialProperties = {
   vertexShader, 
   fragmentShader,
   depthWrite: false,
-}
+  stencilWrite: true, 
+  stencilFunc: EqualStencilFunc, 
+};
 
 export function FillQuad({ map, maskId }) {
   const materialRef = useRef();
@@ -46,9 +48,7 @@ export function FillQuad({ map, maskId }) {
         ref={materialRef} 
         attach="material" 
         {...materialProperties} 
-        stencilFunc={EqualStencilFunc} 
-        stencilRef={maskId} 
-        stencilWrite={true} 
+        stencilRef={maskId}
       />
     </mesh>
   )
