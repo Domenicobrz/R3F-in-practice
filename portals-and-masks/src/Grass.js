@@ -1,5 +1,5 @@
 import { useLoader } from '@react-three/fiber';
-import { Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Color, DoubleSide } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
@@ -18,8 +18,6 @@ export function Grass() {
   }, [gltf]);
 
   return (
-    <Suspense fallback={null}>
-      <primitive object={gltf.scene} />
-    </Suspense>
+    <primitive object={gltf.scene} />
   )
 }

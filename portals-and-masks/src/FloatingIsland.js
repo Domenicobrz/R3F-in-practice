@@ -1,5 +1,5 @@
 import { useLoader } from '@react-three/fiber';
-import { Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
 import { BufferAttribute, Color } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
@@ -21,8 +21,6 @@ export function FloatingIsland() {
   }, [gltf]);
 
   return (
-    <Suspense fallback={null}>
-      <primitive object={gltf.scene} />
-    </Suspense>
+    <primitive object={gltf.scene} />
   )
 }

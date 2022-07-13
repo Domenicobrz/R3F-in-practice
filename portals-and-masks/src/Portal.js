@@ -1,5 +1,5 @@
 import { useFrame, useLoader } from "@react-three/fiber";
-import { Suspense, useEffect } from "react";
+import { useEffect } from "react";
 import { Scene, WebGLRenderTarget, TextureLoader, EquirectangularReflectionMapping, 
   AlwaysStencilFunc, ReplaceStencilOp, DoubleSide, LinearEncoding,
 } from "three";
@@ -9,7 +9,7 @@ import { FillQuad } from "./FillQuad";
 const scene = new Scene();
 scene.background = new TextureLoader().load(
   // thanks to https://www.creativeshrimp.com/midjourney-text-to-images.html
-  process.env.PUBLIC_URL + "textures/galaxy5.jpg",
+  process.env.PUBLIC_URL + "textures/galaxy.jpg",
   (texture) => {
     texture.encoding = LinearEncoding;
     texture.mapping = EquirectangularReflectionMapping;
@@ -56,10 +56,10 @@ export function Portal() {
   }, [model, mask]);
 
   return (
-    <Suspense fallback={null}>
+    <>
       <primitive object={model.scene} />
       <primitive object={mask.scene} />
       <FillQuad map={target.texture} maskId={1} />
-    </Suspense>
+    </>
   );
 }

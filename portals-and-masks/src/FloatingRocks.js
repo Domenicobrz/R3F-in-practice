@@ -1,6 +1,5 @@
 import { useLoader } from '@react-three/fiber';
 import { Float } from '@react-three/drei';
-import { Suspense } from 'react';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 export function FloatingRocks() {
@@ -9,7 +8,7 @@ export function FloatingRocks() {
   const rock3 = useLoader(GLTFLoader, process.env.PUBLIC_URL + "models/floating_rock_3.glb");
   
   return (
-    <Suspense fallback={null}>
+    <>
       <Float
         speed={1.5} 
         rotationIntensity={1.6} 
@@ -38,6 +37,6 @@ export function FloatingRocks() {
       >
         <primitive object={rock3.scene} />
       </Float>
-    </Suspense>
+    </>
   )
 }

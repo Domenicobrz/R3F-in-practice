@@ -1,12 +1,5 @@
 import { OrbitControls, PerspectiveCamera, Environment, Float } from "@react-three/drei";
-import {
-  EffectComposer,
-  HueSaturation,
-  ChromaticAberration,
-  GodRays,
-  DepthOfField,
-  BrightnessContrast,
-} from "@react-three/postprocessing";
+import { EffectComposer, HueSaturation, ChromaticAberration, GodRays, DepthOfField, BrightnessContrast } from "@react-three/postprocessing";
 import { BlendFunction, Resizer, KernelSize } from "postprocessing";
 import { Suspense } from "react";
 import { Color, CylinderGeometry, Mesh, MeshBasicMaterial } from "three";
@@ -35,8 +28,8 @@ mesh.scale.set(1.5, 1, 1);
 export function SceneContainer() {
   return (
     <Suspense fallback={null}>
-      <Environment background={"only"} files={process.env.PUBLIC_URL + "textures/bg6.hdr"} />
-      <Environment background={false} files={process.env.PUBLIC_URL + "textures/envmap1050esp0.5.hdr"} />
+      <Environment background={"only"} files={process.env.PUBLIC_URL + "textures/bg.hdr"} />
+      <Environment background={false} files={process.env.PUBLIC_URL + "textures/envmap.hdr"} />
 
       <PerspectiveCamera makeDefault fov={50} position={[-2, 10.85, 20.35]} />
       <OrbitControls target={[2, 5, 0]} maxPolarAngle={Math.PI * 0.5}/>
@@ -45,9 +38,6 @@ export function SceneContainer() {
         speed={0.5} 
         rotationIntensity={0.6} 
         floatIntensity={0.6}
-        // speed={0} 
-        // rotationIntensity={0} 
-        // floatIntensity={0}
       >
         <primitive object={mesh} />
         <spotLight

@@ -1,5 +1,5 @@
 import { useLoader } from '@react-three/fiber';
-import { Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 export function Trees() {
@@ -13,8 +13,6 @@ export function Trees() {
   }, [gltf]);
 
   return (
-    <Suspense fallback={null}>
-      <primitive object={gltf.scene} />
-    </Suspense>
+    <primitive object={gltf.scene} />
   )
 }
