@@ -65,9 +65,6 @@ export function SceneContainer() {
 
       <EffectComposer stencilBuffer={true}>
         <DepthOfField
-          // focusDistance={0.012}
-          // focalLength={0.013}
-          // bokehScale={8}
           focusDistance={0.012}
           focalLength={0.015}
           bokehScale={7}

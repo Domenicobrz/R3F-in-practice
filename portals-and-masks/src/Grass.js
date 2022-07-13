@@ -4,6 +4,7 @@ import { Color, DoubleSide } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
 export function Grass() {
+  // thanks to https://opengameart.org/content/64-billboard-grass-texture-and-mesh !
   const gltf = useLoader(GLTFLoader, process.env.PUBLIC_URL + "models/grass.glb");
 
   useEffect(() => {

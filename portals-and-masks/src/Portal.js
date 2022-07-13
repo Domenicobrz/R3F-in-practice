@@ -25,6 +25,7 @@ window.addEventListener("resize", () => {
 });
 
 export function Portal() {
+  // thanks to https://sketchfab.com/3d-models/portal-frame-da34b37a224e4e49b307c0b17a50af2c
   const model = useLoader(
     GLTFLoader,
     process.env.PUBLIC_URL + "models/portal.glb"
