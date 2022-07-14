@@ -33,7 +33,7 @@ export function FloatingRocks() {
         speed={1.5} 
         rotationIntensity={1.1} 
         floatIntensity={0}
-        position={[22, 3.5, -9]}
+        position={[20, 3.5, -9]}
       >
         <primitive object={rock3.scene} />
       </Float>
