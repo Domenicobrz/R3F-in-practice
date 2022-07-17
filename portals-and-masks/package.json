@@ -2,6 +2,7 @@
   "name": "portals-and-masks",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@react-three/drei": "^9.14.3",
     "@react-three/fiber": "^8.0.26",

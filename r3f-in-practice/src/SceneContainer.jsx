@@ -1,6 +1,7 @@
 import { OrbitControls, PerspectiveCamera, Environment } from "@react-three/drei";
 import { Suspense } from "react";
 import { FloatingIsland } from "./FloatingIsland";
+import { FloatingRocks } from "./FloatingRocks";
 import { Portal } from "./Portal";
 import { Rocks } from "./Rocks";
 
@@ -16,6 +17,7 @@ export function SceneContainer() {
       <Portal/>
       <Rocks/>
       <FloatingIsland/>
+      <FloatingRocks/>
     </Suspense>
   );
 }

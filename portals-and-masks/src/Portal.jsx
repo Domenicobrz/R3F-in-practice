@@ -9,7 +9,7 @@ import { FillQuad } from "./FillQuad";
 const scene = new Scene();
 scene.background = new TextureLoader().load(
   // thanks to https://www.creativeshrimp.com/midjourney-text-to-images.html
-  process.env.PUBLIC_URL + "textures/galaxy.jpg",
+  process.env.PUBLIC_URL + "/textures/galaxy.jpg",
   (texture) => {
     texture.encoding = LinearEncoding;
     texture.mapping = EquirectangularReflectionMapping;
@@ -28,11 +28,11 @@ export function Portal() {
   // thanks to https://sketchfab.com/3d-models/portal-frame-da34b37a224e4e49b307c0b17a50af2c
   const model = useLoader(
     GLTFLoader,
-    process.env.PUBLIC_URL + "models/portal.glb"
+    process.env.PUBLIC_URL + "/models/portal.glb"
   );
   const mask = useLoader(
     GLTFLoader,
-    process.env.PUBLIC_URL + "models/portal_mask.glb"
+    process.env.PUBLIC_URL + "/models/portal_mask.glb"
   );
 
   useFrame((state) => {
