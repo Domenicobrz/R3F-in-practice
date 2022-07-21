@@ -5,8 +5,8 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 export function Portal() {
   // thanks to https://sketchfab.com/3d-models/portal-frame-da34b37a224e4e49b307c0b17a50af2c
-  const model = useLoader( GLTFLoader, process.env.PUBLIC_URL + "models/portal.glb" );
-  const mask = useLoader( GLTFLoader, process.env.PUBLIC_URL + "models/portal_mask.glb" );
+  const model = useLoader( GLTFLoader, process.env.PUBLIC_URL + "/models/portal.glb" );
+  const mask = useLoader( GLTFLoader, process.env.PUBLIC_URL + "/models/portal_mask.glb" );
 
   useEffect(() => {
     if (!model) return;
