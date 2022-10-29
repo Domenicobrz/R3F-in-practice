@@ -4,3 +4,20 @@ body, html, #root {
   height: 100%;
   overflow: hidden;
 }
+
+.controls {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  background: black;
+  opacity: 0.5;
+  color: white;
+  padding: 5px;
+}
+
+p {
+  margin: 5px;
+  font-family: monospace;
+  font-size: 12px;
+  letter-spacing: 0.75px;
+}
