@@ -17,18 +17,20 @@ export function Track() {
   );
 
   useEffect(() => {
-    result.scene.children[0].material.map.anisotropy = 16;
-  }, [result.scene]);
+    colorMap.anisotropy = 16;
+  }, [colorMap]);
+
+  let geometry = result.scene.children[0].geometry;
 
   return (
     <>
-      <primitive object={result.scene}>
+      <mesh>
+        <primitive object={geometry} attach={"geometry"} />
         <meshBasicMaterial
           toneMapped={false}
-          attach={"children-0-material"}
           map={colorMap}
         />
-      </primitive>
+      </mesh>
 
       <Ramp />
       
