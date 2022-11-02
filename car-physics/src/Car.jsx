@@ -4,7 +4,8 @@ import { useEffect, useRef } from "react";
 import { Quaternion, Vector3 } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useControls } from "./useControls";
-import { WheelCompound } from "./WheelCompound";
+import { useWheels } from "./useWheels";
+import { WheelCompound, wheelInfo } from "./WheelCompound";
 
 export function Car({ firstPerson }) {
   // thanks to the_86_guy!
@@ -15,49 +16,10 @@ export function Car({ firstPerson }) {
   ).scene;
 
   const position = [-1.5, 0.5, 3];
-  const radius = 0.05;
   const width = 0.15;
   const height = 0.07;
   const front = 0.15;
-
-  const wheels = [useRef(null), useRef(null), useRef(null), useRef(null)]
-
-  const wheelInfo = {
-    radius: radius,
-    directionLocal: [0, -1, 0],
-    axleLocal: [1, 0, 0],
-    suspensionStiffness: 60,
-    suspensionRestLength: 0.1,
-    frictionSlip: 5,
-    dampingRelaxation: 2.3,
-    dampingCompression: 4.4,
-    maxSuspensionForce: 100000,
-    rollInfluence:  0.01,
-    maxSuspensionTravel: 0.1,
-    customSlidingRotationalSpeed: -30,
-    useCustomSlidingRotationalSpeed: true
-  }
-
-  const wheelInfo1 = {
-    ...wheelInfo,
-    chassisConnectionPointLocal: [-width * 0.65, height * 0.4, front],
-    isFrontWheel: true,
-  }
-  const wheelInfo2 = {
-    ...wheelInfo,
-    chassisConnectionPointLocal: [width * 0.65, height * 0.4, front],
-    isFrontWheel: true,
-  }
-  const wheelInfo3 = {
-    ...wheelInfo,
-    chassisConnectionPointLocal: [-width * 0.65, height * 0.4, -front],
-    isFrontWheel: false,
-  }
-  const wheelInfo4 = {
-    ...wheelInfo,
-    chassisConnectionPointLocal: [width * 0.65, height * 0.4, -front],
-    isFrontWheel: false,
-  }
+  const wheelRadius = 0.05;
 
   const chassisBodyArgs = [width, height, front * 2];
   const [chassisBody, chassisApi] = useBox(
@@ -70,10 +32,12 @@ export function Car({ firstPerson }) {
     useRef(null),
   );
 
+  const [wheels, wheelInfos] = useWheels(width, height, front, wheelRadius);
+
   const [vehicle, vehicleApi] = useRaycastVehicle(
     () => ({
       chassisBody,
-      wheelInfos: [wheelInfo1, wheelInfo2, wheelInfo3, wheelInfo4],
+      wheelInfos,
       wheels,
     }),
     useRef(null),
@@ -121,10 +85,10 @@ export function Car({ firstPerson }) {
         <boxGeometry args={chassisBodyArgs} />
       </mesh> */}
 
-      <WheelCompound ref={wheels[0]} radius={radius} leftSide />
-      <WheelCompound ref={wheels[1]} radius={radius} />
-      <WheelCompound ref={wheels[2]} radius={radius} leftSide />
-      <WheelCompound ref={wheels[3]} radius={radius} />
+      <WheelCompound wheelRef={wheels[0]} radius={wheelRadius} leftSide />
+      <WheelCompound wheelRef={wheels[1]} radius={wheelRadius} />
+      <WheelCompound wheelRef={wheels[2]} radius={wheelRadius} leftSide />
+      <WheelCompound wheelRef={wheels[3]} radius={wheelRadius} />
     </group>
   );
 }

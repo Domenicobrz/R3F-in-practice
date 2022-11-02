@@ -9,7 +9,6 @@ createRoot(document.getElementById("root")).render(
     <Canvas>
       <Physics
         broadphase="SAP"
-        allowSleep
         gravity={[0, -2.6, 0]}
       >
         <Scene />
