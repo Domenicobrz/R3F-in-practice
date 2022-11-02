@@ -1,6 +1,6 @@
-const debug = true;
+const debug = false;
 
-export const WheelCompound = ({ leftSide, radius, wheelRef }) => {
+export const WheelDebug = ({ leftSide, radius, wheelRef }) => {
   return debug && (
     <group ref={wheelRef}>
       <group rotation={[0, 0, ((leftSide ? 1 : -1) * Math.PI) / 2]}>

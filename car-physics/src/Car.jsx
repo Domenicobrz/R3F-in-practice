@@ -5,7 +5,7 @@ import { Quaternion, Vector3 } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { useControls } from "./useControls";
 import { useWheels } from "./useWheels";
-import { WheelCompound, wheelInfo } from "./WheelCompound";
+import { WheelDebug } from "./WheelDebug";
 
 export function Car({ firstPerson }) {
   // thanks to the_86_guy!
@@ -85,10 +85,10 @@ export function Car({ firstPerson }) {
         <boxGeometry args={chassisBodyArgs} />
       </mesh> */}
 
-      <WheelCompound wheelRef={wheels[0]} radius={wheelRadius} leftSide />
-      <WheelCompound wheelRef={wheels[1]} radius={wheelRadius} />
-      <WheelCompound wheelRef={wheels[2]} radius={wheelRadius} leftSide />
-      <WheelCompound wheelRef={wheels[3]} radius={wheelRadius} />
+      <WheelDebug wheelRef={wheels[0]} radius={wheelRadius} leftSide />
+      <WheelDebug wheelRef={wheels[1]} radius={wheelRadius} />
+      <WheelDebug wheelRef={wheels[2]} radius={wheelRadius} leftSide />
+      <WheelDebug wheelRef={wheels[3]} radius={wheelRadius} />
     </group>
   );
 }
