@@ -85,9 +85,9 @@ export function Car({ firstPerson }) {
         <boxGeometry args={chassisBodyArgs} />
       </mesh> */}
 
-      <WheelDebug wheelRef={wheels[0]} radius={wheelRadius} leftSide />
+      <WheelDebug wheelRef={wheels[0]} radius={wheelRadius} />
       <WheelDebug wheelRef={wheels[1]} radius={wheelRadius} />
-      <WheelDebug wheelRef={wheels[2]} radius={wheelRadius} leftSide />
+      <WheelDebug wheelRef={wheels[2]} radius={wheelRadius} />
       <WheelDebug wheelRef={wheels[3]} radius={wheelRadius} />
     </group>
   );

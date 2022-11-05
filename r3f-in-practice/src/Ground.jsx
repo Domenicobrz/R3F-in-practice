@@ -1,3 +1,4 @@
+import { usePlane } from "@react-three/cannon";
 import { MeshReflectorMaterial } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
@@ -5,6 +6,14 @@ import { BufferAttribute } from "three";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 
 export function Ground() {
+  const [ref] = usePlane(
+    () => ({ 
+      type: 'Static', 
+      rotation: [-Math.PI / 2, 0, 0] }
+    ), 
+    useRef(null)
+  );
+
   const gridMap = useLoader(
     TextureLoader,
     process.env.PUBLIC_URL + "/textures/grid.png"
