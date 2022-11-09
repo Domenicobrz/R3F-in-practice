@@ -5,21 +5,20 @@ export const useControls = (vehicleApi, chassisApi) => {
 
   useEffect(() => {
     const keyDownPressHandler = (e) => {
-      setControls({ ...controls, [e.key.toLowerCase()]: true });
+      setControls((controls) => ({ ...controls, [e.key.toLowerCase()]: true }));
     }
 
     const keyUpPressHandler = (e) => {
-      controls[e.key.toLowerCase()] = false;
-      setControls({ ...controls, [e.key.toLowerCase()]: false });
+      setControls((controls) => ({ ...controls, [e.key.toLowerCase()]: false }));
     }
-
+  
     window.addEventListener("keydown", keyDownPressHandler);
     window.addEventListener("keyup", keyUpPressHandler);
     return () => {
       window.removeEventListener("keydown", keyDownPressHandler);
       window.removeEventListener("keyup", keyUpPressHandler);
     }
-  }, [controls]);
+  }, []);
 
   useEffect(() => {
     if(!vehicleApi || !chassisApi) return;
