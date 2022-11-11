@@ -2,7 +2,7 @@ import { useBox } from "@react-three/cannon";
 
 const debug = false;
 
-export function PhysicsBox({ position, scale }) {
+export function ColliderBox({ position, scale }) {
   useBox(() => ({
     args: scale,
     position,
