@@ -2,6 +2,7 @@ import { useBox, useRaycastVehicle } from "@react-three/cannon";
 import { useFrame, useLoader } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { useControls } from "./useControls";
 import { useWheels } from "./useWheels";
 import { WheelDebug } from "./WheelDebug";
 
@@ -39,6 +40,8 @@ export function Car() {
     }),
     useRef(null),
   );
+
+  useControls(vehicleApi, chassisApi);
 
   useEffect(() => {
     mesh.scale.set(0.0012, 0.0012, 0.0012);
