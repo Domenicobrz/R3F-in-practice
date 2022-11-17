@@ -50,10 +50,10 @@ export const useControls = (vehicleApi, chassisApi) => {
       }
     }
 
-    if (controls.arrowdown) chassisApi.applyTorque([300, 0, 0]);
-    if (controls.arrowup) chassisApi.applyTorque([-300, 0, 0]);
-    if (controls.arrowleft) chassisApi.applyTorque([0, 0, 100]);
-    if (controls.arrowright) chassisApi.applyTorque([0, 0, -100]);
+    if (controls.arrowdown)  chassisApi.applyLocalImpulse([0, -5, 0], [0, 0, +1]);
+    if (controls.arrowup)    chassisApi.applyLocalImpulse([0, -5, 0], [0, 0, -1]);
+    if (controls.arrowleft)  chassisApi.applyLocalImpulse([0, -5, 0], [-0.5, 0, 0]);
+    if (controls.arrowright) chassisApi.applyLocalImpulse([0, -5, 0], [+0.5, 0, 0]);
 
     if (controls.r) {
       chassisApi.position.set(-1.5, 0.5, 3);
