@@ -7,7 +7,7 @@ import { useControls } from "./useControls";
 import { useWheels } from "./useWheels";
 import { WheelDebug } from "./WheelDebug";
 
-export function Car({ firstPerson }) {
+export function Car({ thirdPerson }) {
   // thanks to the_86_guy!
   // https://sketchfab.com/3d-models/low-poly-car-muscle-car-2-ac23acdb0bd54ab38ea72008f3312861
   let result = useLoader(
@@ -46,7 +46,7 @@ export function Car({ firstPerson }) {
   useControls(vehicleApi, chassisApi);
 
   useFrame((state) => {
-    if(!firstPerson) return;
+    if(!thirdPerson) return;
 
     let position = new Vector3(0,0,0);
     position.setFromMatrixPosition(chassisBody.current.matrixWorld);
