@@ -1,24 +1,24 @@
-import { useBox, useRaycastVehicle } from "@react-three/cannon"
-import { useFrame, useLoader } from "@react-three/fiber"
-import { useEffect, useRef } from "react"
-import { Quaternion, Vector3 } from "three"
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
-import { useControls } from "./useControls"
-import { useWheels } from "./useWheels"
-import { WheelDebug } from "./WheelDebug"
+import { useBox, useRaycastVehicle } from "@react-three/cannon";
+import { useFrame, useLoader } from "@react-three/fiber";
+import { useEffect, useRef } from "react";
+import { Quaternion, Vector3 } from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { useControls } from "./useControls";
+import { useWheels } from "./useWheels";
+import { WheelDebug } from "./WheelDebug";
 
 export function Car({ thirdPerson }) {
   // thanks to the_86_guy!
   // https://sketchfab.com/3d-models/low-poly-car-muscle-car-2-ac23acdb0bd54ab38ea72008f3312861
-  let result = useLoader(GLTFLoader, "models/car.glb").scene
+  let result = useLoader(GLTFLoader, "models/car.glb").scene;
 
-  const position = [-1.5, 0.5, 3]
-  const width = 0.15
-  const height = 0.07
-  const front = 0.15
-  const wheelRadius = 0.05
+  const position = [-1.5, 0.5, 3];
+  const width = 0.15;
+  const height = 0.07;
+  const front = 0.15;
+  const wheelRadius = 0.05;
 
-  const chassisBodyArgs = [width, height, front * 2]
+  const chassisBodyArgs = [width, height, front * 2];
   const [chassisBody, chassisApi] = useBox(
     () => ({
       allowSleep: false,
@@ -27,9 +27,9 @@ export function Car({ thirdPerson }) {
       position,
     }),
     useRef(null)
-  )
+  );
 
-  const [wheels, wheelInfos] = useWheels(width, height, front, wheelRadius)
+  const [wheels, wheelInfos] = useWheels(width, height, front, wheelRadius);
 
   const [vehicle, vehicleApi] = useRaycastVehicle(
     () => ({
@@ -38,40 +38,40 @@ export function Car({ thirdPerson }) {
       wheels,
     }),
     useRef(null)
-  )
+  );
 
-  useControls(vehicleApi, chassisApi)
+  useControls(vehicleApi, chassisApi);
 
   useFrame((state) => {
-    if (!thirdPerson) return
+    if (!thirdPerson) return;
 
-    let position = new Vector3(0, 0, 0)
-    position.setFromMatrixPosition(chassisBody.current.matrixWorld)
+    let position = new Vector3(0, 0, 0);
+    position.setFromMatrixPosition(chassisBody.current.matrixWorld);
 
-    let quaternion = new Quaternion(0, 0, 0, 0)
-    quaternion.setFromRotationMatrix(chassisBody.current.matrixWorld)
+    let quaternion = new Quaternion(0, 0, 0, 0);
+    quaternion.setFromRotationMatrix(chassisBody.current.matrixWorld);
 
-    let wDir = new Vector3(0, 0, 1)
-    wDir.applyQuaternion(quaternion)
-    wDir.normalize()
+    let wDir = new Vector3(0, 0, 1);
+    wDir.applyQuaternion(quaternion);
+    wDir.normalize();
 
     let cameraPosition = position
       .clone()
-      .add(wDir.clone().multiplyScalar(1).add(new Vector3(0, 0.3, 0)))
+      .add(wDir.clone().multiplyScalar(1).add(new Vector3(0, 0.3, 0)));
 
-    wDir.add(new Vector3(0, 0.2, 0))
-    state.camera.position.copy(cameraPosition)
-    state.camera.lookAt(position)
-  })
+    wDir.add(new Vector3(0, 0.2, 0));
+    state.camera.position.copy(cameraPosition);
+    state.camera.lookAt(position);
+  });
 
   useEffect(() => {
-    if (!result) return
+    if (!result) return;
 
-    let mesh = result
-    mesh.scale.set(0.0012, 0.0012, 0.0012)
+    let mesh = result;
+    mesh.scale.set(0.0012, 0.0012, 0.0012);
 
-    mesh.children[0].position.set(-365, -18, -67)
-  }, [result])
+    mesh.children[0].position.set(-365, -18, -67);
+  }, [result]);
 
   return (
     <group ref={vehicle} name="vehicle">
@@ -93,5 +93,5 @@ export function Car({ thirdPerson }) {
       <WheelDebug wheelRef={wheels[2]} radius={wheelRadius} />
       <WheelDebug wheelRef={wheels[3]} radius={wheelRadius} />
     </group>
-  )
+  );
 }
