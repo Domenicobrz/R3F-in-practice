@@ -2,29 +2,29 @@ import {
   Environment,
   OrbitControls,
   PerspectiveCamera,
-} from "@react-three/drei"
-import { Suspense, useEffect, useState } from "react"
-import { Car } from "./Car"
-import { Ground } from "./Ground"
-import { Track } from "./Track"
+} from "@react-three/drei";
+import { Suspense, useEffect, useState } from "react";
+import { Car } from "./Car";
+import { Ground } from "./Ground";
+import { Track } from "./Track";
 
 export function Scene() {
-  const [thirdPerson, setThirdPerson] = useState(false)
-  const [cameraPosition, setCameraPosition] = useState([-6, 3.9, 6.21])
+  const [thirdPerson, setThirdPerson] = useState(false);
+  const [cameraPosition, setCameraPosition] = useState([-6, 3.9, 6.21]);
 
   useEffect(() => {
     function keydownHandler(e) {
       if (e.key == "k") {
         // random is necessary to trigger a state change
         if (thirdPerson)
-          setCameraPosition([-6, 3.9, 6.21 + Math.random() * 0.01])
-        setThirdPerson(!thirdPerson)
+          setCameraPosition([-6, 3.9, 6.21 + Math.random() * 0.01]);
+        setThirdPerson(!thirdPerson);
       }
     }
 
-    window.addEventListener("keydown", keydownHandler)
-    return () => window.removeEventListener("keydown", keydownHandler)
-  }, [thirdPerson])
+    window.addEventListener("keydown", keydownHandler);
+    return () => window.removeEventListener("keydown", keydownHandler);
+  }, [thirdPerson]);
 
   return (
     <Suspense fallback={null}>
@@ -37,5 +37,5 @@ export function Scene() {
       <Track />
       <Car thirdPerson={thirdPerson} />
     </Suspense>
-  )
+  );
 }

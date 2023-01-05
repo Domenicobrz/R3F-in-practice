@@ -3,7 +3,7 @@ import {
   PerspectiveCamera,
   Environment,
   Float,
-} from "@react-three/drei"
+} from "@react-three/drei";
 import {
   EffectComposer,
   HueSaturation,
@@ -11,20 +11,20 @@ import {
   GodRays,
   DepthOfField,
   BrightnessContrast,
-} from "@react-three/postprocessing"
-import { BlendFunction, Resizer, KernelSize } from "postprocessing"
-import { Suspense } from "react"
-import { Color, CylinderGeometry, Mesh, MeshBasicMaterial } from "three"
-import { FloatingIsland } from "./FloatingIsland"
-import { FloatingRocks } from "./FloatingRocks"
-import { Grass } from "./Grass"
-import { Portal } from "./Portal"
-import { Rocks } from "./Rocks"
-import { Trees } from "./Trees"
-import { Words } from "./Words"
-import { SceneParticles } from "./SceneParticles"
+} from "@react-three/postprocessing";
+import { BlendFunction, Resizer, KernelSize } from "postprocessing";
+import { Suspense } from "react";
+import { Color, CylinderGeometry, Mesh, MeshBasicMaterial } from "three";
+import { FloatingIsland } from "./FloatingIsland";
+import { FloatingRocks } from "./FloatingRocks";
+import { Grass } from "./Grass";
+import { Portal } from "./Portal";
+import { Rocks } from "./Rocks";
+import { Trees } from "./Trees";
+import { Words } from "./Words";
+import { SceneParticles } from "./SceneParticles";
 
-let lightColor = new Color(1, 0.2, 0.1)
+let lightColor = new Color(1, 0.2, 0.1);
 let mesh = new Mesh(
   new CylinderGeometry(0.3, 0.3, 0.2, 20),
   new MeshBasicMaterial({
@@ -32,10 +32,10 @@ let mesh = new Mesh(
     transparent: true,
     opacity: 1,
   })
-)
-mesh.rotation.x = Math.PI * 0.5
-mesh.position.set(1.17, 10.7, -4.1)
-mesh.scale.set(1.5, 1, 1)
+);
+mesh.rotation.x = Math.PI * 0.5;
+mesh.position.set(1.17, 10.7, -4.1);
+mesh.scale.set(1.5, 1, 1);
 
 export function SceneContainer() {
   return (
@@ -103,5 +103,5 @@ export function SceneContainer() {
         />
       </EffectComposer>
     </Suspense>
-  )
+  );
 }

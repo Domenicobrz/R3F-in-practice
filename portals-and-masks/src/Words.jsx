@@ -1,4 +1,4 @@
-import { Float, Text3D } from "@react-three/drei"
+import { Float, Text3D } from "@react-three/drei";
 
 export function Words() {
   return (
@@ -37,5 +37,5 @@ export function Words() {
         </Text3D>
       </Float>
     </>
-  )
+  );
 }

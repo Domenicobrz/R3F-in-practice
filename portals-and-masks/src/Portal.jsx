@@ -1,5 +1,5 @@
-import { useFrame, useLoader } from "@react-three/fiber"
-import { useEffect } from "react"
+import { useFrame, useLoader } from "@react-three/fiber";
+import { useEffect } from "react";
 import {
   Scene,
   WebGLRenderTarget,
@@ -9,53 +9,53 @@ import {
   ReplaceStencilOp,
   DoubleSide,
   LinearEncoding,
-} from "three"
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
-import { FillQuad } from "./FillQuad"
+} from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { FillQuad } from "./FillQuad";
 
-const scene = new Scene()
+const scene = new Scene();
 scene.background = new TextureLoader().load(
   // thanks to https://www.creativeshrimp.com/midjourney-text-to-images.html
   "textures/galaxy.jpg",
   (texture) => {
-    texture.encoding = LinearEncoding
-    texture.mapping = EquirectangularReflectionMapping
+    texture.encoding = LinearEncoding;
+    texture.mapping = EquirectangularReflectionMapping;
   }
-)
+);
 
 const target = new WebGLRenderTarget(window.innerWidth, window.innerHeight, {
   stencilBuffer: false,
-})
+});
 
 window.addEventListener("resize", () => {
-  target.setSize(window.innerWidth, window.innerHeight)
-})
+  target.setSize(window.innerWidth, window.innerHeight);
+});
 
 export function Portal() {
   // thanks to https://sketchfab.com/3d-models/portal-frame-da34b37a224e4e49b307c0b17a50af2c
-  const model = useLoader(GLTFLoader, "models/portal.glb")
-  const mask = useLoader(GLTFLoader, "models/portal_mask.glb")
+  const model = useLoader(GLTFLoader, "models/portal.glb");
+  const mask = useLoader(GLTFLoader, "models/portal_mask.glb");
 
   useFrame((state) => {
-    state.gl.setRenderTarget(target)
-    state.gl.render(scene, state.camera)
-    state.gl.setRenderTarget(null)
-  })
+    state.gl.setRenderTarget(target);
+    state.gl.render(scene, state.camera);
+    state.gl.setRenderTarget(null);
+  });
 
   useEffect(() => {
-    if (!model) return
+    if (!model) return;
 
-    let mesh = model.scene.children[0]
-    mesh.material.envMapIntensity = 3.5
+    let mesh = model.scene.children[0];
+    mesh.material.envMapIntensity = 3.5;
 
-    let maskMesh = mask.scene.children[0]
-    maskMesh.material.transparent = false
-    maskMesh.material.side = DoubleSide
-    maskMesh.material.stencilFunc = AlwaysStencilFunc
-    maskMesh.material.stencilWrite = true
-    maskMesh.material.stencilRef = 1
-    maskMesh.material.stencilZPass = ReplaceStencilOp
-  }, [model, mask])
+    let maskMesh = mask.scene.children[0];
+    maskMesh.material.transparent = false;
+    maskMesh.material.side = DoubleSide;
+    maskMesh.material.stencilFunc = AlwaysStencilFunc;
+    maskMesh.material.stencilWrite = true;
+    maskMesh.material.stencilRef = 1;
+    maskMesh.material.stencilZPass = ReplaceStencilOp;
+  }, [model, mask]);
 
   return (
     <>
@@ -63,5 +63,5 @@ export function Portal() {
       <primitive object={mask.scene} />
       <FillQuad map={target.texture} maskId={1} />
     </>
-  )
+  );
 }

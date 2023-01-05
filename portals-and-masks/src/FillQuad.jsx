@@ -22,16 +22,16 @@ const fragmentShader = `
 `;
 
 const uniforms = {
-  map: { type: "t", value: null }
+  map: { type: "t", value: null },
 };
 
 const materialProperties = {
-  uniforms, 
-  vertexShader, 
+  uniforms,
+  vertexShader,
   fragmentShader,
   depthWrite: false,
-  stencilWrite: true, 
-  stencilFunc: EqualStencilFunc, 
+  stencilWrite: true,
+  stencilFunc: EqualStencilFunc,
 };
 
 export function FillQuad({ map, maskId }) {
@@ -44,12 +44,12 @@ export function FillQuad({ map, maskId }) {
   return (
     <mesh>
       <planeGeometry args={[2, 2]} />
-      <shaderMaterial 
-        ref={materialRef} 
-        attach="material" 
-        {...materialProperties} 
+      <shaderMaterial
+        ref={materialRef}
+        attach="material"
+        {...materialProperties}
         stencilRef={maskId}
       />
     </mesh>
-  )
+  );
 }

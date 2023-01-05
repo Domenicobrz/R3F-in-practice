@@ -1,9 +1,9 @@
-import { usePlane } from "@react-three/cannon"
-import { MeshReflectorMaterial } from "@react-three/drei"
-import { useLoader } from "@react-three/fiber"
-import { useEffect, useRef } from "react"
-import { BufferAttribute } from "three"
-import { TextureLoader } from "three/src/loaders/TextureLoader"
+import { usePlane } from "@react-three/cannon";
+import { MeshReflectorMaterial } from "@react-three/drei";
+import { useLoader } from "@react-three/fiber";
+import { useEffect, useRef } from "react";
+import { BufferAttribute } from "three";
+import { TextureLoader } from "three/src/loaders/TextureLoader";
 
 export function Ground() {
   const [ref] = usePlane(
@@ -12,27 +12,27 @@ export function Ground() {
       rotation: [-Math.PI / 2, 0, 0],
     }),
     useRef(null)
-  )
+  );
 
-  const gridMap = useLoader(TextureLoader, "textures/grid.png")
+  const gridMap = useLoader(TextureLoader, "textures/grid.png");
 
-  const aoMap = useLoader(TextureLoader, "textures/ground-ao.png")
+  const aoMap = useLoader(TextureLoader, "textures/ground-ao.png");
 
-  const alphaMap = useLoader(TextureLoader, "textures/alpha-map.png")
+  const alphaMap = useLoader(TextureLoader, "textures/alpha-map.png");
 
   useEffect(() => {
-    gridMap.anisotropy = 16
-  }, [gridMap])
+    gridMap.anisotropy = 16;
+  }, [gridMap]);
 
-  const meshRef = useRef(null)
-  const meshRef2 = useRef(null)
+  const meshRef = useRef(null);
+  const meshRef2 = useRef(null);
   useEffect(() => {
-    var uvs = meshRef.current.geometry.attributes.uv.array
-    meshRef.current.geometry.setAttribute("uv2", new BufferAttribute(uvs, 2))
+    var uvs = meshRef.current.geometry.attributes.uv.array;
+    meshRef.current.geometry.setAttribute("uv2", new BufferAttribute(uvs, 2));
 
-    var uvs2 = meshRef2.current.geometry.attributes.uv.array
-    meshRef2.current.geometry.setAttribute("uv2", new BufferAttribute(uvs2, 2))
-  }, [meshRef.current])
+    var uvs2 = meshRef2.current.geometry.attributes.uv.array;
+    meshRef2.current.geometry.setAttribute("uv2", new BufferAttribute(uvs2, 2));
+  }, [meshRef.current]);
 
   return (
     <>
@@ -81,5 +81,5 @@ export function Ground() {
         />
       </mesh>
     </>
-  )
+  );
 }
