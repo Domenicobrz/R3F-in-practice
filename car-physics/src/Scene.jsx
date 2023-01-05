@@ -16,8 +16,9 @@ export function Scene() {
     function keydownHandler(e) {
       if (e.key == "k") {
         // random is necessary to trigger a state change
-        if(thirdPerson) setCameraPosition([-6, 3.9, 6.21 + Math.random() * 0.01]);
-        setThirdPerson(!thirdPerson); 
+        if (thirdPerson)
+          setCameraPosition([-6, 3.9, 6.21 + Math.random() * 0.01]);
+        setThirdPerson(!thirdPerson);
       }
     }
 
@@ -27,15 +28,10 @@ export function Scene() {
 
   return (
     <Suspense fallback={null}>
-      <Environment
-        files={process.env.PUBLIC_URL + "/textures/envmap.hdr"}
-        background={"both"}
-      />
+      <Environment files={"textures/envmap.hdr"} background={"both"} />
 
       <PerspectiveCamera makeDefault position={cameraPosition} fov={40} />
-      {!thirdPerson && (
-        <OrbitControls target={[-2.64, -0.71, 0.03]} />
-      )}
+      {!thirdPerson && <OrbitControls target={[-2.64, -0.71, 0.03]} />}
 
       <Ground />
       <Track />

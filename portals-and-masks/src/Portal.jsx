@@ -1,7 +1,14 @@
 import { useFrame, useLoader } from "@react-three/fiber";
 import { useEffect } from "react";
-import { Scene, WebGLRenderTarget, TextureLoader, EquirectangularReflectionMapping, 
-  AlwaysStencilFunc, ReplaceStencilOp, DoubleSide, LinearEncoding,
+import {
+  Scene,
+  WebGLRenderTarget,
+  TextureLoader,
+  EquirectangularReflectionMapping,
+  AlwaysStencilFunc,
+  ReplaceStencilOp,
+  DoubleSide,
+  LinearEncoding,
 } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { FillQuad } from "./FillQuad";
@@ -9,7 +16,7 @@ import { FillQuad } from "./FillQuad";
 const scene = new Scene();
 scene.background = new TextureLoader().load(
   // thanks to https://www.creativeshrimp.com/midjourney-text-to-images.html
-  process.env.PUBLIC_URL + "/textures/galaxy.jpg",
+  "textures/galaxy.jpg",
   (texture) => {
     texture.encoding = LinearEncoding;
     texture.mapping = EquirectangularReflectionMapping;
@@ -26,14 +33,8 @@ window.addEventListener("resize", () => {
 
 export function Portal() {
   // thanks to https://sketchfab.com/3d-models/portal-frame-da34b37a224e4e49b307c0b17a50af2c
-  const model = useLoader(
-    GLTFLoader,
-    process.env.PUBLIC_URL + "/models/portal.glb"
-  );
-  const mask = useLoader(
-    GLTFLoader,
-    process.env.PUBLIC_URL + "/models/portal_mask.glb"
-  );
+  const model = useLoader(GLTFLoader, "models/portal.glb");
+  const mask = useLoader(GLTFLoader, "models/portal_mask.glb");
 
   useFrame((state) => {
     state.gl.setRenderTarget(target);
